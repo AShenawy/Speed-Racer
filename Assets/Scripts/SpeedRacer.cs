@@ -26,9 +26,9 @@ public class SpeedRacer : MonoBehaviour
         CheckWeight();
 
 
-        if (yearMade < = 2009)
+        if (yearMade <= 2009)
         {
-            print("The vehicle was introduced in " + yearMade)
+            print("The vehicle was introduced in " + yearMade);
 
             int carAge = CalculateAge(yearMade);
             print("The vehicle is " + carAge + " years old.");
@@ -37,14 +37,15 @@ public class SpeedRacer : MonoBehaviour
 
         else
         {
-            print("The vehicle was introduced in 2010.")
-            print("The vehicle's maximum acceleration is " + maxAcceleration)
+            print("The vehicle was introduced in 2010.");
+            print("The vehicle's maximum acceleration is " + maxAcceleration);
         }
 
-
+        print(CheckCharacteristics());
 
     }
 
+    //Check Weight function.
 
     void CheckWeight()
     {
@@ -62,6 +63,7 @@ public class SpeedRacer : MonoBehaviour
     }
 
 
+    //Calculate age function.
 
     int CalculateAge(int yearMade)
 
@@ -70,6 +72,27 @@ public class SpeedRacer : MonoBehaviour
     }
 
 
+    //Characteristics function.
+
+    string CheckCharacteristics()
+    {
+        if(isCarTypeSedan)
+        {
+            return "The vehicle is a sedan.";
+        }
+
+        else if(hasFrontEngine)
+        {
+            return "The vehicle is not a sedan, however has a front engine.";
+        }
+        
+        else
+        {
+            return "The vehicle is neither a sedan nor has a front engine.";
+        }
+
+
+    }
 
 
     // Update is called once per frame
