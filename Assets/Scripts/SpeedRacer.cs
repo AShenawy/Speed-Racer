@@ -29,8 +29,7 @@ public class SpeedRacer : MonoBehaviour
           print("The car was introduced in the 2010's");
           print("The car's maximum acceleration is " + maxAcceleration);
         }
-
- 
+         print(CheckCharacteristics); 
     }
 
     void CheckWeight()
