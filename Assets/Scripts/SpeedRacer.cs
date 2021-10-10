@@ -52,6 +52,23 @@ public class SpeedRacer : MonoBehaviour
         return result;
     }
 
+    string CheckCharacteristics ()
+    {
+        if (isCarTypeSedan = true)
+        {
+            return ("The car is sedan");
+        }
+        else if (hasFrontEngine = true)
+        {
+            return ("The car is not a sedan, but has a front engine");
+        }
+        else
+        {
+            return {"The car is neither a sedan nor does it have a front engine"};
+        }
+    }
+
+
 
     // Update is called once per frame
     void Update()
