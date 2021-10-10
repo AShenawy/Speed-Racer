@@ -16,6 +16,20 @@ public class SpeedRacer : MonoBehaviour
         print(carModel);
         print(engineType);
         CheckWeight();
+
+        if (yearMade <= 2009)
+        {
+            print("The car was introduced in " + yearMade);
+            int carAge;
+            carAge = CalculateAge(yearMade);
+            print("The car's age is " + carAge);
+        }
+        else
+        {
+          print("The car was introduced in the 2010's");
+          print("The car's maximum acceleration is " + maxAcceleration);
+        }
+
  
     }
 
