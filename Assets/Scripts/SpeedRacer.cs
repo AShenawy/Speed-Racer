@@ -105,11 +105,15 @@ public class SpeedRacer : MonoBehaviour
 
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
-       
+        bool down = Input.GetKeyDown(KeyCode.Space);
+
+        if (down)
+        {
+            ConsumeFuel();
+            CheckFuelLevel();
+        }
     }
 }
