@@ -80,6 +80,11 @@ public class SpeedRacer : MonoBehaviour
         }
     }
 
+    void ConsumeFuel()
+    {
+        carFuel.fuelLevel = carFuel.fuelLevel-10;
+    }
+
 
 
     // Update is called once per frame
