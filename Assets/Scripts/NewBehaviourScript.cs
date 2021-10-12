@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedRacer : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
     string carModel = "GTR R35";
     string engineType = "V6, Twin Turbo";
@@ -28,8 +28,8 @@ public class SpeedRacer : MonoBehaviour
         }
         else
         {
-            print("the car was introduced in the 2010’s");
-            print("car’s maximum acceleration" + maxAcceleration);
+            print("the car was introduced in the 2010â€™s");
+            print("carâ€™s maximum acceleration" + maxAcceleration);
         }
 
         CheckCharacteristics();
