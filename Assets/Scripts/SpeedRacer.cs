@@ -77,7 +77,7 @@ public class SpeedRacer : MonoBehaviour
         modify the message, so that it includes the carMaker variable as well, 
         where it appears somewhere in the message after carModel and before engineType value.
          */
-        print("The car model is " + carModel + " created by " + carMaker + ". " + " And the engine type is " + engineType + ".");
+        print("The car model is " + carModel + " created by " + carMaker + ". And the engine type is " + engineType + ".");
 
         //2-(A.03.1).
         CheckWeight();
@@ -99,9 +99,9 @@ public class SpeedRacer : MonoBehaviour
             print("The car was introduced in " + yearMade + ".");
             int carAge = CalculateAge(yearMade);
             print("The age of the car is " + carAge + ".");
-
         }
-        else {
+        else
+        {
             print("The car was introduced in the 2010’s.");
             print("The car’s maximum acceleration is " + maxAcceleration + ".");
         }
@@ -110,9 +110,7 @@ public class SpeedRacer : MonoBehaviour
          6-(A.03.1).
          In the Start function, call the print function and provide it with the return result of the CheckCharacteristics function.
          */
-        string message = CheckCharacteristics();
-        print(message);
-
+        print(CheckCharacteristics());
     }
 
     /*
@@ -123,13 +121,15 @@ public class SpeedRacer : MonoBehaviour
     Otherwise, print to the console a message stating that the carModel weighs over 1500 kg.
     Call the CheckWeight function inside the Start function, after the first print in the previous step.
     */
-    void CheckWeight() {
+    void CheckWeight()
+    {
         if (carWeight < 1500)
         {
-            print("The car weighs less than 1500 kg.");
+            print("The " + carModel +" weighs less than 1500 kg.");
         }
-        else {
-            print("The car weighs over 1500 kg.");
+        else
+        {
+            print("The " + carModel + " weighs over 1500 kg.");
         }
     }
 
@@ -138,9 +138,9 @@ public class SpeedRacer : MonoBehaviour
     Create another function named CalculateAge, which takes one integer argument and returns an integer.
     Inside the function, return the result of subtracting the yearMade variable from the number 2021.
      */
-    int CalculateAge(int yearMade) {
-        int result = 2021 - yearMade;
-        return result;
+    int CalculateAge(int yearMade)
+    {
+        return 2021 - yearMade;
     }
 
     /*
@@ -152,25 +152,22 @@ public class SpeedRacer : MonoBehaviour
     If that is true, then return a string indicating that the car isn’t a sedan, but has a front engine.
     If both checks failed, then return a string saying that the car is neither a sedan nor does it have a front engine.
      */
-    string CheckCharacteristics() {
+    string CheckCharacteristics()
+    {
         
-        string result;
-
-        if (isCarTypeSedan == true) {
-            result = "The car type is a sedan.";
-            return result;
+        if (isCarTypeSedan == true) 
+        {
+            return "The car type is a sedan.";
         }
         else
         {
             if (hasFrontEngine == true)
             {
-                result = "The car isn’t a sedan, but has a front engine.";
-                return result;
+                return "The car isn’t a sedan, but has a front engine.";
             }
             else
             {
-                result = "The car is neither a sedan nor does it have a front engine.";
-                return result;
+                return "The car is neither a sedan nor does it have a front engine.";
             }
         }
     }
