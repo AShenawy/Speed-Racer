@@ -69,7 +69,7 @@ public class SpeedRacer : MonoBehaviour
             
         }
 
-        print(checkCharactiristic());
+        print(CheckCharactiristic());
     }
 
     void CheckWieght()
@@ -120,7 +120,7 @@ public class SpeedRacer : MonoBehaviour
        
     }
 
-    string checkCharactiristic()
+    string CheckCharactiristic()
     {
 
         if (isCarTypeSedan)
@@ -136,7 +136,5 @@ public class SpeedRacer : MonoBehaviour
 
             return "The car is neither a sedan nor does it have a front engine.";
         }
-
-
     }
 }
