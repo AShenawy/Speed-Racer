@@ -13,8 +13,8 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(carModel);
-        print(engineType);
+        print(carModel, engineType);
+
         CheckWeight();
 
         if (yearMade <= 2009)
@@ -29,7 +29,7 @@ public class SpeedRacer : MonoBehaviour
           print("The car was introduced in the 2010's");
           print("The car's maximum acceleration is " + maxAcceleration);
         }
-         print(CheckCharacteristics); 
+         print(CheckCharacteristics());
     }
 
     void CheckWeight()
