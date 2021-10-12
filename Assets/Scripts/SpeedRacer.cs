@@ -20,9 +20,9 @@ public class SpeedRacer : MonoBehaviour
         {
             fuelLevel = amount;
         }
-
-
     }
+
+    public Fuel carFuel = new Fuel(100);
 
 
     // Start is called before the first frame update
