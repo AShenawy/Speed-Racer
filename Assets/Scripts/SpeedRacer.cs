@@ -10,14 +10,29 @@ public class SpeedRacer : MonoBehaviour
     public int yearMade = 2019;
     public float maxAcceleration = 1.06;
     public bool isCarTypeSedan = false;
-    public bool hasFrontEngine = true;
+    public bool hasFrontEngine = false;
     public  int carAge;
     public string carMaker= "Lamborghini";
 
     // Start is called before the first frame update
+
+    public class Fuel
+    {
+        int fuelLevel;
+
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+
+    }
+
+    public Fuel carFuel = new Fuel(100);
+
     void Start()
     {
-        print(carModel + " " + engineType);
+        
+        print("The racer model is " + carModel + " by " + carMaker + ". It has a " + engineType + " engine.");
         print("previous step");
         CheckWeight();
         if (yearMade >= 2009)
