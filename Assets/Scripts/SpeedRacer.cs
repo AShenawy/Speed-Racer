@@ -13,15 +13,14 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(carModel, engineType);
+        print(carModel + engineType);
 
         CheckWeight();
 
         if (yearMade <= 2009)
         {
             print("The car was introduced in " + yearMade);
-            int carAge;
-            carAge = CalculateAge(yearMade);
+            int carAge = CalculateAge(yearMade);
             print("The car's age is " + carAge);
         }
         else
@@ -46,24 +45,23 @@ public class SpeedRacer : MonoBehaviour
 
     int CalculateAge(int year)
     {
-        int result;
-        result = 2021 - year;
+        int result = 2021 - year;
         return result;
     }
 
     string CheckCharacteristics ()
     {
-        if (isCarTypeSedan = true)
+        if (isCarTypeSedan == true)
         {
             return ("The car is sedan");
         }
-        else if (hasFrontEngine = true)
+        else if (hasFrontEngine == true)
         {
             return ("The car is not a sedan, but has a front engine");
         }
         else
         {
-            return {"The car is neither a sedan nor does it have a front engine"};
+            return ("The car is neither a sedan nor does it have a front engine");
         }
     }
 
