@@ -85,6 +85,26 @@ public class SpeedRacer : MonoBehaviour
         carFuel.fuelLevel = carFuel.fuelLevel-10;
     }
 
+    void CheckFuelLevel()
+    {
+        switch (carFuel.fuelLevel)
+        {
+            case 70:
+                print ("Fuel level is nearing two-thirds.");
+                break;
+            case 50:
+                print ("Fuel level is at half amount.");
+                break;
+            case 10:
+                print ("Warning! Fuel level is critically low.");
+                break;
+            default:
+                print ("I dunno what to say");
+                break;
+        }
+
+    }
+
 
 
     // Update is called once per frame
