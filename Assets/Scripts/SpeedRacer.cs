@@ -9,15 +9,26 @@ public class SpeedRacer : MonoBehaviour
     public float maxAcceleration = 0.98f;
     public bool isCarTypeSedan = false;
     public bool hasFrontEngine = true;
-
-    //A.03.2
     public string carMaker; 
+
+    public class Fuel
+    {
+        public int fuelLevel;
+
+        //Constructor
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+
+
+    }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        print(carModel + engineType);
+        print(carModel + carMaker + engineType);
 
         CheckWeight();
 
