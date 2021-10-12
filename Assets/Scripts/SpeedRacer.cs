@@ -27,7 +27,31 @@ public class SpeedRacer : MonoBehaviour
 
     // several constructors, how parameters match?
 
+    void ConsumeFuel()
+    {
+        carFuel.fuelLevel = carFuel.fuelLevel - 10;
+    }
 
+    void CheckFuelLevel()
+    {
+        switch (carFuel.fuelLevel)
+        {
+            case 70:
+                print("fuel level is nearing two-thirds");
+                break;
+            case 50:
+                print("fuel level is at half amount");
+                break;
+            case 10:
+                print("Warning! Fuel level is critically low");
+                break;
+            default:
+                print("there’s nothing to report");
+                break;
+
+        }
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +125,14 @@ public class SpeedRacer : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
+        bool down = Input.GetKeyDown(KeyCode.Space);
+  
 
+        if (down)
+        {
+            ConsumeFuel();
+            CheckFuelLevel();
+        }
+        
     }
 }
