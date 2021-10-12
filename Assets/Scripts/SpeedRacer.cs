@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SpeedRacer : MonoBehaviour
 {
-    string carModel = "GTR R35";
-    string engineType = "V6, Twin Turbo";
-    int carWeight = 1609;
-    int yearMade = 2009;
-    float maxAcceleration = 40.0f;
-    bool isCarTypeSedan = false;
-    bool hasFrontEngine = true;
-    int carAge;
-
+    public string carModel = "Huracan Evo";
+    public string engineType = " Naturally Aspirated V10";
+    public int carWeight = 1665;
+    public int yearMade = 2019;
+    public float maxAcceleration = 1.06;
+    public bool isCarTypeSedan = false;
+    public bool hasFrontEngine = true;
+    public  int carAge;
+    public string carMaker= "Lamborghini";
 
     // Start is called before the first frame update
     void Start()
