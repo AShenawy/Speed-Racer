@@ -9,10 +9,25 @@ public class SpeedRacer : MonoBehaviour
     public float maxAcceleration = 0.98f;
     public bool isCarTypeSedan = false;
     public bool hasFrontEngine = true;
-
     public string carMaker;
 
- 
+    public class Fuel
+    {
+        public int fuelLevel;
+
+        //Constructor
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+    }
+    // how to see if it's even work 
+
+    public Fuel carFuel = new Fuel(100);
+
+    // several constructors, how parameters match?
+
+
 
     // Start is called before the first frame update
     void Start()
