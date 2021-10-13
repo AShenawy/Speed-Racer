@@ -14,8 +14,8 @@ public class SpeedRacer : MonoBehaviour
     void Start()
     {
         //Message will appear in the console
-        print("This car model is " + carModel);
-        print("The engine is " + engineType);
+        print("This car model is " + carModel + " and its engine is " + engineType);
+       
 
         //Call weight function, if statement
         CheckWeight();
@@ -75,7 +75,7 @@ public class SpeedRacer : MonoBehaviour
         }
         else if (hasFrontEngine)
         {
-            return "Apperently the car isn't a sedan, but has a nice front engine";
+            return "Apparently the car isn't a sedan, but has a nice front engine";
         }
         else
         {
