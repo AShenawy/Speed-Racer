@@ -2,20 +2,38 @@ using UnityEngine;
 
 public class SpeedRacer : MonoBehaviour
 {
-    string carModel = "GTR R35";
-    string engineType = "V6, Twin Turbo";
-    int carWeight = 1609;
-    int yearMade = 2009;
-    float maxAcceleration = 0.98f;
-    bool isCarTypeSedan = false;
-    bool hasFrontEngine = true;
+    public string carModel = "GTR R35";
+    public string carMaker;
+    public string engineType = "V6, Twin Turbo";
+    public int carWeight = 1609;
+    public int yearMade = 2009;
+    public float maxAcceleration = 0.98f;
+    public bool isCarTypeSedan = false;
+    public bool hasFrontEngine = true;
+
+    //Subclass for fuel information
+    public class Fuel
+    {
+        //Declare an integer variable
+        public int fuelLevel;
+
+        //Create amount parameter
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+
+    }
+
+    //Passing a value to the previous constructor
+    public Fuel carFuel = new Fuel(100);
+
 
     // Start is called before the first frame update
     void Start()
     {
         //Message will appear in the console
         print("This car model is " + carModel + " and its engine is " + engineType);
-       
 
         //Call weight function, if statement
         CheckWeight();
@@ -42,6 +60,56 @@ public class SpeedRacer : MonoBehaviour
 
         print(CheckCharacteristcs());
     }
+
+
+
+    //If statement influenced by spacebar press
+    void Update()
+    {
+        //Namethe key pressed
+        //Call the functions implied in if statement
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ConsumeFuel();
+            CheckFuelLevel();
+        }
+    }
+
+
+    void ConsumeFuel()
+    {
+        //Substract 10 from old fuel value
+        carFuel.fuelLevel = carFuel.fuelLevel - 10;
+    }
+
+    //Statement that checks the fuel level 
+    void CheckFuelLevel()
+    {
+        switch (carFuel.fuelLevel)
+        {
+            //Print message in case fuel level is 70
+            case 70:
+                print("Fuel level is nearing two - thirds.");
+                break;
+            //Print message in case fuel level is 50
+            case 50:
+                print("Fuel level is at half amount.");
+                break;
+            //Print message in case fuel level is 10
+            case 10:
+                print("Warning! Fuel level is critically low.");
+                break;
+            //Print message in case fuel level is 0
+            case 0:
+                print("No fuel! In romanian we would call this: pana prostului");
+                break;
+            //Print message in case fuel level is none of the above
+            default:
+                print("nothing to report here...");
+                break;
+        }
+    }
+
 
     //Function that prints message if the weight is under or over 1500
     void CheckWeight()
