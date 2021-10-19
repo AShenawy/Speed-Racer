@@ -239,7 +239,7 @@ MonoBehaviour:
   carMaker: ' Lamborghini'
   engineType: ' Naturally Aspirated V10'
   carWeight: 1665
-  yearMade: 2019
+  yearMade: 2015
   maxAcceleration: 1.06
   isCarTypeSedan: 0
   hasFrontEngine: 0
