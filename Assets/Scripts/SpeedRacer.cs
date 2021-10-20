@@ -54,19 +54,15 @@ public class SpeedRacer : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            ConsumeFuel();
-            CheckFuelLevel();
-        }
+
     }
   
-    void ConsumeFuel()
+    public void ConsumeFuel()
     {
         carFuel.fuelLevel = carFuel.fuelLevel - 10;
     }
    
-    void CheckFuelLevel()
+    public void CheckFuelLevel()
     {
         switch(carFuel.fuelLevel)
         {
