@@ -109,7 +109,7 @@ public class SpeedRacer : MonoBehaviour
     {
         if (isCarTypeSedan)
         {
-            return "Car Type i Sedan";
+            return "Car Type is a sedan";
         }
         else if (hasFrontEngine)
         {
@@ -117,7 +117,7 @@ public class SpeedRacer : MonoBehaviour
         }
         else
         {
-            return "that the car is neither a sedan nor does it have a front engine";
+            return "the car is neither a sedan nor does it have a front engine";
         }
     }
 
