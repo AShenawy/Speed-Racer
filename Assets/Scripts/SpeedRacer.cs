@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
-
+using UnityEngine.UI;
+using System.Collections;
 
 public class SpeedRacer : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SpeedRacer : MonoBehaviour
 
 
 
+
     public int carWeight = 1609;
     public int yearMade = 2009;
     public double maxAcceleration = 0.98;
@@ -22,6 +24,15 @@ public class SpeedRacer : MonoBehaviour
 
     public bool isCarTypeSedan = false;
     public bool hasFrontEngine = true;
+
+
+    // variables for fuel level checking
+    public Text numberText;
+    public int number = 100;
+
+    
+
+    // public GameObject carInfo; 
 
     /* 
     A03.2 starts:
@@ -40,6 +51,13 @@ public class SpeedRacer : MonoBehaviour
 
     public Fuel carFuel = new Fuel(100);
 
+
+
+
+    //public Text Text;
+
+    
+    
     /* 
    The end of A03.2
     */
@@ -48,7 +66,14 @@ public class SpeedRacer : MonoBehaviour
     void Start()
     {
 
-        print("Car model: " + carModel + "\nManufacturer: " + carMaker + "\nEngine type: " + engineType);
+
+        //shouldCreateAsAFunction(gameObj, "string");
+        string a1 = "Text";
+         Text txtMy = GameObject.Find("Canvas/" + a1).GetComponent<Text>();
+         txtMy.text = "Car model: " + carModel + "\nManufacturer: " + carMaker + "\nEngine type: " + engineType;
+
+
+       // print("Car model: " + carModel + "\nManufacturer: " + carMaker + "\nEngine type: " + engineType);
 
         CheckWieght();
 
@@ -72,6 +97,13 @@ public class SpeedRacer : MonoBehaviour
         print(CheckCharactiristic());
     }
 
+    /*void MaybeLikeThis(Text a1, string a2)
+    {
+        Text txtMy = GameObject.Find("Canvas/" + a1).GetComponent<Text>();
+        txtMy.a1 = a2;
+    }
+    */
+
     void CheckWieght()
     {
         if (carWeight < 1500)
@@ -81,6 +113,7 @@ public class SpeedRacer : MonoBehaviour
         else if (carWeight > 1500)
         {
             print(carModel + "'s weight is more than 1500 kg");
+
         }
         else
         {
@@ -112,7 +145,8 @@ public class SpeedRacer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ConsumeFuelLevel();
             CheckFuelLevel();
@@ -137,4 +171,38 @@ public class SpeedRacer : MonoBehaviour
             return "The car is neither a sedan nor does it have a front engine.";
         }
     }
+
+   public void SetText(string text)
+    {
+        Text txt = transform.Find("Text").GetComponent<Text>();
+        txt.text = text;
+    }
+
+
+    //should break the loop!
+
+    public void ButtonClicked()
+    {
+        number--;
+
+
+        {
+            if (number < 90)
+            {
+                numberText.text = "Attention!! Fuel level is at half amount: " + number.ToString();
+            }
+            else if (number < 70)
+            {
+                //   print("Fuel level is: ");
+                numberText.text = "Warning! Fuel level is critically low: " + number.ToString();
+            }
+            else
+            {
+                numberText.text = "Fuel level is: " + number.ToString();
+            }
+
+        }
+    }
+
+
 }
