@@ -20,11 +20,8 @@ public class SpeedRacer : MonoBehaviour
 
     void Start()
     {
-        Button btn = yourButton.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClick);
         string carText = "Car: " + carModel + "\n" + "Brand: " + carMaker + "\n" + "Engine: " + engineType;
         TextToUI(carInfo, carText);
-
         CheckWeight();
         string carAgeText;
         if (yearMade <= 2009)
@@ -39,17 +36,22 @@ public class SpeedRacer : MonoBehaviour
             TextToUI(carAge, carAgeText);
         }
         CheckCharacteristics();
+        Button btn = yourButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
     }
+
     void TaskOnClick()
     {
         Debug.Log("You have clicked the button!");
         ConsumeFuel();
         CheckFuelLevel(); 
     }
+
     void ConsumeFuel()
     {
         carFuel.fuelLevel = carFuel.fuelLevel - 10;
     }
+
     void CheckFuelLevel()
     {
         string fuelLevelText;
@@ -75,11 +77,13 @@ public class SpeedRacer : MonoBehaviour
                 break;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
        
     }
+
     void CheckWeight()
     {
         string checkWeightText;
@@ -117,6 +121,7 @@ public class SpeedRacer : MonoBehaviour
             TextToUI(checkCharacteristics, "The car is neither a sedan nor does it have a front engine");
         }
     }
+
     public class Fuel
     {
         public int fuelLevel;
@@ -125,5 +130,6 @@ public class SpeedRacer : MonoBehaviour
             fuelLevel = amount;
         }
     }
+
     public Fuel carFuel = new Fuel(100);
 }
