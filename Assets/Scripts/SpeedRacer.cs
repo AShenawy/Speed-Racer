@@ -60,7 +60,6 @@ public class SpeedRacer : MonoBehaviour
             case 70:
                 fuelLevelText = "fuel level is nearing two-thirds";
                 TextToUI(fuelLevel, fuelLevelText);
-                print(carFuel.fuelLevel);
                 break;
             case 50:
                 fuelLevelText = "fuel level is at half amount";
@@ -73,7 +72,6 @@ public class SpeedRacer : MonoBehaviour
             default:
                 fuelLevelText = "there's nothing to report";
                 TextToUI(fuelLevel, fuelLevelText);
-                print(carFuel.fuelLevel);
                 break;
         }
     }
