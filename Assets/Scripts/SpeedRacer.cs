@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
 
 public class SpeedRacer : MonoBehaviour
 {
@@ -10,6 +13,16 @@ public class SpeedRacer : MonoBehaviour
     public float maxAcceleration = 0.98f;
     public bool isCarTypeSedan = false;
     public bool hasFrontEngine = true;
+
+    public Text myText;
+    public Text myText2;
+    public Text myText3;
+    public Text myText4;
+    public Text myText5;
+    public Text myText6;
+
+    public Button myButton;
+    public Button myButton2;
 
     //Subclass for fuel information
     public class Fuel
@@ -32,8 +45,9 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //Message will appear in the console
-        print("This car model is " + carModel + " and its engine is " + engineType);
+        myText.text = "This car model is " + carModel + " and its engine is " + engineType;
 
         //Call weight function, if statement
         CheckWeight();
@@ -43,37 +57,41 @@ public class SpeedRacer : MonoBehaviour
         if (yearMade <= 2009)
         {
             //...do this
-            print("The " + carModel + " was introduced in " + yearMade);
+            myText2.text = "The " + carModel + " was introduced in " + yearMade;
 
             //Call the calculate age function
             int carAge = CalculateAge(yearMade);
 
-            print("which means it is " + carAge + " years old");
+            myText3.text = "which means it is " + carAge + " years old.";
         }
         //If the year is more than 2009
         else if (yearMade > 2009)
         {
             //...do this
-            print(carModel + " was introduced in 2010");
-            print(carModel + "'s maximum acceleration is" + maxAcceleration + "m/s");
+            myText2.text = carModel + " was introduced in 2010";
+            myText3.text = carModel + "'s maximum acceleration is" + maxAcceleration + "m/s.";
         }
 
-        print(CheckCharacteristcs());
+        myText5.text = CheckCharacteristcs();
+
+        Button btn = myButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+
+
+
     }
 
 
-
-    //If statement influenced by spacebar press
-    void Update()
+  
+    //If statement influenced by click
+    void TaskOnClick()
     {
-        //Namethe key pressed
-        //Call the functions implied in if statement
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             ConsumeFuel();
             CheckFuelLevel();
-        }
+            
     }
+
+   
 
 
     void ConsumeFuel()
@@ -87,25 +105,43 @@ public class SpeedRacer : MonoBehaviour
     {
         switch (carFuel.fuelLevel)
         {
+            case 90:
+                myText6.text = "FASTER...";
+                break;
+            case 80:
+                myText6.text = "FASTER...";
+                break;
             //Print message in case fuel level is 70
             case 70:
-                print("Fuel level is nearing two - thirds.");
+                myText6.text = "Fuel level is nearing two - thirds.";
+                break;
+            case 60:
+                myText6.text = "FASTER...";
                 break;
             //Print message in case fuel level is 50
             case 50:
-                print("Fuel level is at half amount.");
+                myText6.text = "Fuel level is at half amount.";
+                break;
+            case 40:
+                myText6.text = "FASTER...";
+                break;
+            case 30:
+                myText6.text = "Hit it!";
+                break;
+            case 20:
+                myText6.text = "Warning! Fuel level is critically low.";
                 break;
             //Print message in case fuel level is 10
             case 10:
-                print("Warning! Fuel level is critically low.");
+                myText6.text = "One more time" ;
                 break;
             //Print message in case fuel level is 0
             case 0:
-                print("No fuel! In romanian we would call this: pana prostului");
+                myText6.text = "That was very irresponsible. No more gas.";
                 break;
             //Print message in case fuel level is none of the above
             default:
-                print("nothing to report here...");
+                myText6.text = ":(";
                 break;
         }
     }
@@ -118,13 +154,13 @@ public class SpeedRacer : MonoBehaviour
         if (carWeight < 1500)
         {
             //...do this
-            print(carModel + " weights less than 1500kg");
+            myText4.text = carModel + " weights less than 1500kg.";
         }
         //If the car weight is bigger than 1500...
         else
         {
             //...do this
-            print(carModel + " weights more than 1500kg");
+            myText4.text = carModel + " weights more than 1500kg.";
         }
     }
 
