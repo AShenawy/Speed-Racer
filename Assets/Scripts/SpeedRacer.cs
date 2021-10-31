@@ -12,9 +12,16 @@ public class SpeedRacer : MonoBehaviour
 {
     //variables for HW#2
     public GameObject fuelButton;
+    
+    //display general info
     public GameObject displayInfoPanel;
     public Text displayInfoText;
-
+    
+    //dispaly fuel warning info
+    public GameObject fuelInfoPanel;
+    public Text fuelInfoText;
+    
+    //dispaly fuel level info
     public GameObject fuelLevelPanel;
     public Text fuelLevelText;
 
@@ -49,22 +56,25 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        string message;
         //print car model and engine type
-        print("The racer model is " + carModel + carMaker + ". It has a " + engineType + " engine.");
-        CheckWeight();
+        message = "The racer model is " + carModel + " " + carMaker + ". It has a " + engineType + " engine.\n";
+        message += CheckWeight();
         if(yearMade <= 2009)
         {
-            print("It was first introduced in " + yearMade);
+            message +=  "It was first introduced in " + yearMade;
             int age = CalculateAge(yearMade);
-            print("That makes it " + age + " years old");
+            message +=  "That makes it " + age + " years old";
         }
         else
         {
-            print("The car was introduced in the 2010’s.");
-            print("The car’s maximum acceleration is " + maxAcceleration + "m/s2");
+            message += "The car was introduced in the 2010’s.\n";
+            message += "The car’s maximum acceleration is " + maxAcceleration + "m/s2\n";
 
         }
-        print(CheckCharacteristics());
+        message += CheckCharacteristics();
+
+        TextToUI(displayInfoText,message);
     }
 
     // Update is called once per frame
@@ -79,12 +89,12 @@ public class SpeedRacer : MonoBehaviour
     }
 
     //Check if weight of the car is less or more than 1500
-    void CheckWeight()
+    string CheckWeight()
     {
         if (carWeight < 1500)
-            print("the " + carModel + " weighs less than 1500 kg.");
+            return "the " + carModel + " weighs less than 1500 kg.\n";
         else
-            print("the " + carModel + " weighs over 1500 kg.");
+            return "the " + carModel + " weighs over 1500 kg.\n";
     }
 
     //Calculate the age of the car from the current year 2021
@@ -97,15 +107,15 @@ public class SpeedRacer : MonoBehaviour
     string CheckCharacteristics()
     {
         if(isCarTypeSedan)
-            return "The car type is a sedan.";
+            return "The car type is a sedan.\n";
         else
         {
             if (hasFrontEngine)
             {
-                return "The car isn’t a sedan, but has a front engine.";
+                return "The car isn’t a sedan, but has a front engine.\n";
             }
             else
-                return "The car is neither a sedan nor does it have a front engine.";
+                return "The car is neither a sedan nor does it have a front engine.\n";
         }
     }
 
@@ -116,45 +126,42 @@ public class SpeedRacer : MonoBehaviour
         {
             //every time we invode the function the level of fuel will be reduced by 10
             carFuel.fuelLevel -= 10;
-            DisplayFuelLevelText("Current Fuel Level: " + carFuel.fuelLevel.ToString());
+            TextToUI(fuelLevelText,"Current Fuel Level: " + carFuel.fuelLevel.ToString());
         }
         else
-            DisplayFuelLevelText("Out of Fuel!!");
+            TextToUI(fuelLevelText, "Out of Fuel!!");
     }
 
     void CheckFuelLevel()
     {
+        string message;
         switch(carFuel.fuelLevel)
         {
             case 100:
-                DisplayInfoText("Fuel level is Full.");
+                message = "Fuel level is Full.";
                 break;
             case 70:
-                DisplayInfoText("Fuel level is nearing two - thirds.");
+                message =  "Fuel level is nearing two - thirds.";
                 break;
             case 50:
-                DisplayInfoText("Fuel level is at half amount.");
+                message = "Fuel level is at half amount.";
                 break;
             case 10:
-                DisplayInfoText("Warning! Fuel level is critically low.");
+                message = "Warning! Fuel level is critically low.";
                 break;
             default:
-                DisplayInfoText("There’s nothing to report.");
+                message = "There’s nothing to report.";
                 break;
 
         }
+        TextToUI(fuelInfoText,message);
     }
 
-    void DisplayInfoText(string message)
+
+    void TextToUI(Text textObject, string message)
     {
         //displayInfoPanel.SetActive(true);
-        displayInfoText.text = message;
-    }
-
-    void DisplayFuelLevelText(string message)
-    {
-        //fuelLevelPanel.SetActive(true);
-        fuelLevelText.text = message;
+        textObject.text = message;
     }
 
 }
