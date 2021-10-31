@@ -11,7 +11,8 @@ using UnityEngine.UI;
 public class SpeedRacer : MonoBehaviour
 {
     //variables for HW#2
-    public Button fuelButton;
+    public Button accelerateButton;
+    public Button refuelButton;
     
     //display general info
     public GameObject displayInfoPanel;
@@ -94,6 +95,12 @@ public class SpeedRacer : MonoBehaviour
         CheckFuelLevel();
     }
 
+    public void RefillFuelButtonClick()
+    {
+        RefillFeul();
+        CheckFuelLevel();
+    }
+
     //Check if weight of the car is less or more than 1500
     string CheckWeight()
     {
@@ -128,14 +135,19 @@ public class SpeedRacer : MonoBehaviour
     void ConsumeFuel() 
     {
         //check if fuel level reached zero stop
-        if (carFuel.fuelLevel > 0)
+        if (carFuel.fuelLevel >= 10)
         {
             //every time we invoke the function the level of fuel will be reduced by 10
             carFuel.fuelLevel -= 10;
             TextToUI(fuelLevelText,"Current Fuel Level: " + carFuel.fuelLevel.ToString());
         }
-        else
-            TextToUI(fuelLevelText, "Out of Fuel!!");
+    }
+
+    void RefillFeul()
+    {
+        if (carFuel.fuelLevel < 100)
+            carFuel.fuelLevel = 100;
+        TextToUI(fuelLevelText,"Current Fuel Level: " + carFuel.fuelLevel.ToString());
     }
 
     void CheckFuelLevel()
@@ -154,6 +166,9 @@ public class SpeedRacer : MonoBehaviour
                 break;
             case 10:
                 message = "Warning! Fuel level is critically low.";
+                break;
+            case 0:
+                message = "Out of Fuel!!";
                 break;
             default:
                 message = "There’s nothing to report.";
