@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+  
     string carModel = "GTR R35";
     string engineType = "V6, Twin Turbo";
     int carWeight = 1609;
@@ -79,4 +80,5 @@ public class NewBehaviourScript : MonoBehaviour
             return "The car is neither a sedan, nor is its engine a front engine.";
         }
     }
+
 }
