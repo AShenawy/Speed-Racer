@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpeedRacer : MonoBehaviour
 {
+    public Button fuelButton;
+    public Text carStats;
+
     public string carModel = "GTR R35";
     public string engineType = "V6, Twin Turbo";
     public int carWeight = 1609;
@@ -10,46 +14,54 @@ public class SpeedRacer : MonoBehaviour
     public bool isCarTypeSedan = false;
     public bool hasFrontEngine = true;
     public string carMaker;
+    private bool firstTimePressed = true;
+    private string staticCarStats;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("the racer model is " + carModel + " " + carMaker + ". It has a " + engineType + " engine.");
-        CheckWeight();
-
+        string part1 = ("the racer model is " + carModel + " " + carMaker + ". It has a " + engineType + " engine.");
+        string weight = CheckWeight();
+        string part2;
+        string part3;
         if(yearMade <= 2009)
         {
-            Debug.Log("the car was introduced in " + yearMade);
+            part2 = ("the car was introduced in " + yearMade);
             int carAge = CalculateAge(yearMade);
-            Debug.Log("That makes it " + carAge + " years old.");
+            part3 = ("That makes it " + carAge + " years old.");
         }
         else
         {
-            Debug.Log("the car was introduced in the 2010’s");
-            Debug.Log("Car´s maxium acceleration is " + maxAcceleration);
+            part2 = ("the car was introduced in the 2010’s");
+            part3 = ("Car´s maxium acceleration is " + maxAcceleration);
         }
 
-        Debug.Log(CheckCharacteristics());
+        string character = CheckCharacteristics();
+        string n = "\n";
+        carStats.text = part1 + n + weight + n + part2 + n + part3;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void pressCarButton()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        ConsumeFuel();
+        string fuelLevel = CheckFuelLevel();
+        if (firstTimePressed)
         {
-            ConsumeFuel();
-            CheckFuelLevel();
+            firstTimePressed = false;
+            staticCarStats = carStats.text + "\n" + "\n";
         }
+        carStats.text = staticCarStats + fuelLevel;
     }
 
-    private void CheckWeight()
+    private string CheckWeight()
     {
         if (carWeight < 1500)
         {
-            Debug.Log("The " + carModel + " weights less than 1500 kg.");
+            return ("The " + carModel + " weights less than 1500 kg.");
         }
         else
         {
-            Debug.Log("The " + carModel + " weights over 1500 kg.");
+            return ("The " + carModel + " weights over 1500 kg.");
         }
     }
 
@@ -82,29 +94,25 @@ public class SpeedRacer : MonoBehaviour
         carFuel.fuelLevel -= 10;
     }
 
-    private void CheckFuelLevel()
+    private string CheckFuelLevel()
     {
         switch (carFuel.fuelLevel)
         {
             case 10:
                 {
-                    Debug.Log("Warning! Fuel level is critically low.");
-                    break;
+                    return ("Warning! Fuel level is critically low.");
                 }
             case 50:
                 {
-                    Debug.Log("fuel level is at half amount.");
-                    break;
+                    return ("fuel level is at half amount.");
                 }
             case 70:
                 {
-                    Debug.Log("fuel level is nearing two-thirds.");
-                    break;
+                    return ("fuel level is nearing two-thirds.");
                 }
             default:
                 {
-                    Debug.Log("there’s nothing to report.");
-                    break;
+                    return ("there’s nothing to report.");
                 }
         }
     }
