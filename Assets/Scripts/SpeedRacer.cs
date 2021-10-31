@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class SpeedRacer : MonoBehaviour
 {
     //variables for HW#2
-    public GameObject fuelButton;
+    public Button fuelButton;
     
     //display general info
     public GameObject displayInfoPanel;
@@ -58,7 +58,7 @@ public class SpeedRacer : MonoBehaviour
     {
         string message;
         //print car model and engine type
-        message = "The racer model is " + carModel + " " + carMaker + ". It has a " + engineType + " engine.\n";
+        message = "The racer model is " + carModel + " " + carMaker + ".\nIt has a " + engineType + " engine.\n";
         message += CheckWeight();
         if(yearMade <= 2009)
         {
@@ -83,9 +83,15 @@ public class SpeedRacer : MonoBehaviour
         //The action gets activated if you press on the space bar
         if (Input.GetKeyDown("space"))
         {
-            ConsumeFuel();
-            CheckFuelLevel();
+            PlayOneTurn();
         }
+    }
+
+    //This function can be called by either using the space bar or clicking on the accelerate button
+    public void PlayOneTurn()
+    {
+        ConsumeFuel();
+        CheckFuelLevel();
     }
 
     //Check if weight of the car is less or more than 1500
@@ -118,13 +124,13 @@ public class SpeedRacer : MonoBehaviour
                 return "The car is neither a sedan nor does it have a front engine.\n";
         }
     }
-
-    void ConsumeFuel()
+    
+    void ConsumeFuel() 
     {
         //check if fuel level reached zero stop
         if (carFuel.fuelLevel > 0)
         {
-            //every time we invode the function the level of fuel will be reduced by 10
+            //every time we invoke the function the level of fuel will be reduced by 10
             carFuel.fuelLevel -= 10;
             TextToUI(fuelLevelText,"Current Fuel Level: " + carFuel.fuelLevel.ToString());
         }
@@ -157,7 +163,7 @@ public class SpeedRacer : MonoBehaviour
         TextToUI(fuelInfoText,message);
     }
 
-
+    //universal printing function pass the message and the Text container
     void TextToUI(Text textObject, string message)
     {
         //displayInfoPanel.SetActive(true);
