@@ -1,7 +1,23 @@
+/*
+ * Instructor: Ahmed Alshenawy
+ * Developer: Mohammed Ockba
+ * Homework 0.4.1 Creating a user interface for the SpeedRacer Game 
+ * Course Basics of Game Development
+ */
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SpeedRacer : MonoBehaviour
 {
+    //variables for HW#2
+    public GameObject fuelButton;
+    public GameObject displayInfoPanel;
+    public Text displayInfoText;
+
+    public GameObject fuelLevelPanel;
+    public Text fuelLevelText;
+
     //variable declaration A3.2
     public string carMaker;
 
@@ -95,28 +111,50 @@ public class SpeedRacer : MonoBehaviour
 
     void ConsumeFuel()
     {
-        //every time we invode the function the level of fuel will be reduced by 10
-        carFuel.fuelLevel -= 10;
+        //check if fuel level reached zero stop
+        if (carFuel.fuelLevel > 0)
+        {
+            //every time we invode the function the level of fuel will be reduced by 10
+            carFuel.fuelLevel -= 10;
+            DisplayFuelLevelText("Current Fuel Level: " + carFuel.fuelLevel.ToString());
+        }
+        else
+            DisplayFuelLevelText("Out of Fuel!!");
     }
 
     void CheckFuelLevel()
     {
         switch(carFuel.fuelLevel)
         {
+            case 100:
+                DisplayInfoText("Fuel level is Full.");
+                break;
             case 70:
-                print("Fuel level is nearing two - thirds.");
+                DisplayInfoText("Fuel level is nearing two - thirds.");
                 break;
             case 50:
-                print("Fuel level is at half amount.");
+                DisplayInfoText("Fuel level is at half amount.");
                 break;
             case 10:
-                print("Warning! Fuel level is critically low.");
+                DisplayInfoText("Warning! Fuel level is critically low.");
                 break;
             default:
-                print("There’s nothing to report.");
+                DisplayInfoText("There’s nothing to report.");
                 break;
 
         }
+    }
+
+    void DisplayInfoText(string message)
+    {
+        //displayInfoPanel.SetActive(true);
+        displayInfoText.text = message;
+    }
+
+    void DisplayFuelLevelText(string message)
+    {
+        //fuelLevelPanel.SetActive(true);
+        fuelLevelText.text = message;
     }
 
 }
