@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class SpeedRacer : MonoBehaviour
 {
@@ -18,11 +20,21 @@ public class SpeedRacer : MonoBehaviour
 
     public bool hasFrontEngine = true;
 
+    public Fuel carFuel = new Fuel(100);
+
+    public Text CarSpecificationText;
+
+    public Button CheckFuelBtn;
+
+    public SpeedRacer() {}
+
     //A class that holds all properties and function of the car's fuel tank
     public class Fuel
     {
         //private property
         int fuelLevel;
+
+        public Text FeedbackText;
 
         public Fuel(int amount)
         {
@@ -47,32 +59,36 @@ public class SpeedRacer : MonoBehaviour
             switch (fuelLevel)
             {
                 case 70:
-                    print("fuel level is nearing two - thirds.");
+                    FeedbackText.text = "fuel level is nearing two - thirds.";
                     break;
 
                 case 50:
-                    print("fuel level is at half amount");
+                    FeedbackText.text = "fuel level is at half amount";
                     break;
 
                 case 10:
-                    print("Warning! Fuel level is critically low.");
+                    FeedbackText.text = "Warning! Fuel level is critically low.";
                     break;
 
                 default:
-                    print("There is nothing to report.");
+                    FeedbackText.text = "There is nothing to report.";
                     break;
-
             }
         }
-
     }
 
-    public Fuel carFuel = new Fuel(100);
-
-    // Start is called before the first frame update
+    // Start is called before the first frame updsate
     void Start()
     {
-        print($"The car model is {carModel}, {carMaker} car, with a {engineType} engine type");
+        CarSpecificationText = GameObject.Find("CarSpecText").GetComponent<Text>();
+
+        CheckFuelBtn = GameObject.Find("CheckFuelBtn").GetComponent<Button>();
+
+        carFuel.FeedbackText = GameObject.Find("feedbackText").GetComponent<Text>();
+
+        CarSpecificationText.text += $"\nThe car model is {carModel}, {carMaker} car, with a {engineType} engine type";
+
+        CheckFuelBtn.onClick.AddListener(MoveCar);
 
         //check car's weight
         CheckWeight();
@@ -82,19 +98,24 @@ public class SpeedRacer : MonoBehaviour
         {
             int carAge = CalculateAge(yearMade);
 
-            print($"This car was made in the year {yearMade}");
+            CarSpecificationText.text += $"\nThis car was made in the year {yearMade}";
 
-            print($"This car is {carAge} years old");
+            CarSpecificationText.text += $"\nThis car is {carAge} years old";
         }
         else
         {
-            print("This car was probably introduced in the 2010s");
+            CarSpecificationText.text += "\nThis car was probably introduced in the 2010s";
 
-            print($"This car has a maximum acceleration of {maxAcceleration}, woo crazy fast / slow, I dunno!");
+            CarSpecificationText.text += $"\nThis car has a maximum acceleration of {maxAcceleration}, woo crazy fast / slow, I dunno!";
         }
 
-        print(CheckCharacteristics());
+        CarSpecificationText.text += $"\n{CheckCharacteristics()}";
+    }
 
+    void MoveCar()
+    {
+        carFuel.ConsumeFuel();
+        carFuel.CheckFuelLevel();
     }
 
     // Update is called once per frame
@@ -114,13 +135,12 @@ public class SpeedRacer : MonoBehaviour
 
         if (carWeight < maxWeight)
         {
-            print($"Car weight is less than {maxWeight}kg");
+            CarSpecificationText.text += $"\nCar weight is less than {maxWeight}kg";
         }
         else
         {
-            print($"Car weighs over {maxWeight}kg");
+            CarSpecificationText.text += $"\nCar weighs over {maxWeight}kg";
         }
-
     }
 
     //calculates the age of the car
