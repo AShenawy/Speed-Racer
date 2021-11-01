@@ -20,7 +20,27 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        print("The racermodel is" + carModel + ". It has a " + engineType + "engine.");
+
+        CheckWeight();
+        if (yearMade <=2009
+        {
+            print("It was first introduced in" + yearMade);
+            int carAge = calculateAge(yearMade);
+
+            print ("That makes it " + carAge + "years old.")
+
+
+
+
+        }else
+        {
+            print("It was introduced in the 2010's");
+            print("And its maximum acceleration is" + maxAccelleration + "m/s2");
+
+        }
+
+        print(checkCharacteristics());
     }
 
     // Update is called once per frame
