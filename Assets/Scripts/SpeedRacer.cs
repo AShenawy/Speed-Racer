@@ -19,6 +19,7 @@ public class SpeedRacer : MonoBehaviour
     public int yearMade = 2009;
     public double maxAcceleration = 0.98;
 
+    public GameObject carInfo;
 
 
 
@@ -30,7 +31,13 @@ public class SpeedRacer : MonoBehaviour
     public Text numberText;
     public int number = 100;
 
-    
+
+
+    public Text carModelText;
+    public Text carMakerText;
+    public Text engineTypeText;
+    public Text carWeightText;
+
 
     // public GameObject carInfo; 
 
@@ -52,6 +59,7 @@ public class SpeedRacer : MonoBehaviour
     public Fuel carFuel = new Fuel(100);
 
 
+    
 
 
     //public Text Text;
@@ -66,16 +74,14 @@ public class SpeedRacer : MonoBehaviour
     void Start()
     {
 
+        printText(carModelText, carModel);
+        printText(carMakerText, carMaker);
+        printText(engineTypeText, engineType);
+        printText(carWeightText, CheckWieght());
 
-        //shouldCreateAsAFunction(gameObj, "string");
-        string a1 = "Text";
-         Text txtMy = GameObject.Find("Canvas/" + a1).GetComponent<Text>();
-         txtMy.text = "Car model: " + carModel + "\nManufacturer: " + carMaker + "\nEngine type: " + engineType;
 
 
-       // print("Car model: " + carModel + "\nManufacturer: " + carMaker + "\nEngine type: " + engineType);
-
-        CheckWieght();
+        CheckWieght1();
 
         if(yearMade <= 2009)
         {
@@ -95,16 +101,27 @@ public class SpeedRacer : MonoBehaviour
         }
 
         print(CheckCharactiristic());
+
+        //        infoText.SetActive(true);
+//        infoText.text = carModel;
+     
+
     }
 
-    /*void MaybeLikeThis(Text a1, string a2)
+    void printText(Text text, string str)
     {
-        Text txtMy = GameObject.Find("Canvas/" + a1).GetComponent<Text>();
-        txtMy.a1 = a2;
+        if (!(str == ""))
+        {
+            text.text = str;
+        }
+        else
+        {
+            text.text = "No Value";
+        }
     }
-    */
 
-    void CheckWieght()
+
+    void CheckWieght1()
     {
         if (carWeight < 1500)
         {
@@ -120,6 +137,26 @@ public class SpeedRacer : MonoBehaviour
             print(carModel + "'s weight is exactrly 1500 kg"); // in case if wight (is) == 1500 kg)
         }
     }
+
+
+    string CheckWieght()
+    {
+        if (carWeight < 1500)
+        {
+           return  carModel + "'s weight is less than 1500 kg";
+        }
+
+        else if (carWeight > 1500)
+        {
+            return carModel + "'s weight is more than 1500 kg";
+
+        }
+        else
+        {
+            return carModel + "'s weight is exactrly 1500 kg"; // in case if wight (is) == 1500 kg)
+        }
+    }
+
 
     void ConsumeFuelLevel()
     {
@@ -204,5 +241,6 @@ public class SpeedRacer : MonoBehaviour
         }
     }
 
+    
 
 }
