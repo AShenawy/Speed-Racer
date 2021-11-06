@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedRacer : MonoBehaviour
+public class SpeedRacerNew : MonoBehaviour
 {
     public string carMaker;
     public string carModel = "GTR R35";
@@ -13,10 +15,21 @@ public class SpeedRacer : MonoBehaviour
     public bool isCarTypeSedan = false;
     public bool hasFrontEngine = true;
 
+    public class Fuel
+    {
+        public int fuelLevel;
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+    }
+
+public Fuel carFuel = new Fuel(100);
+
     // Start is called before the first frame update
     void Start()
     {
-        print("The racer moldes is " + carModel + ". It has a " + engineType + "engine.");
+        print("The racer moldes is " + carModel + "by" + carMaker + ". It has a " + engineType + "engine.");
         
         CheckWeight();
 
@@ -28,11 +41,44 @@ public class SpeedRacer : MonoBehaviour
 
         } else
         {
-            print(carModel + "was introduced in the 2010's".);
+            print(carModel + "was introduced in the 2010's");
             print("Its maximum acceleration is " + maxAcceleration + "m/s2");
         }
 
         print(CheckCharacteristics());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ConsumeFuel();
+            CheckFuelLevel();
+        }
+    }
+
+    void ConsumeFuel()
+    {
+        carFuel.fuelLevel = carFuel.fuelLevel - 10;
+    }
+
+    void CheckFuelLevel()
+    {
+        switch (carFuel.fuelLevel) 
+        {
+            case 70:
+                print("Fuel level is nearing two-thirds.");
+                break;
+            case 50:
+                print("Fuel level is at half amoun.");
+                break;
+            case 10:
+                print("Warning! Fuel level is critically low.");
+                break;
+            default:
+                print("Nothing to report.");
+                break;
+        }
     }
 
     void CheckWeight()
