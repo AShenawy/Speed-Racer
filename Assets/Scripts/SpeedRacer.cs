@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedRacerNew : MonoBehaviour
+public class SpeedRacer : MonoBehaviour
 {
     public string carMaker;
     public string carModel = "GTR R35";
