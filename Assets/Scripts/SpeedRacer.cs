@@ -11,6 +11,8 @@ public class SpeedRacer : MonoBehaviour
     public bool hasFrontEngine = true;
     public string carMaker; 
 
+    private string msg;
+
     public class Fuel
     {
         public int fuelLevel;
@@ -28,6 +30,7 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        msg = "The model specs: " + carModel + carMaker + engineType + "\n";
         print(carModel + carMaker + engineType);
 
         CheckWeight();
@@ -116,4 +119,6 @@ public class SpeedRacer : MonoBehaviour
             CheckFuelLevel();
         }
     }
+
+
 }
