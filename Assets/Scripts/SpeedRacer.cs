@@ -39,16 +39,21 @@ public class SpeedRacer : MonoBehaviour
 
         if (yearMade <= 2009)
         {
-            print("The car was introduced in " + yearMade);
+            msg = msg + "The car was introduced in " + yearMade + "\n";
+            //print("The car was introduced in " + yearMade);
             int carAge = CalculateAge(yearMade);
-            print("The car's age is " + carAge);
+            msg = msg + "The car's age is " + carAge + "\n";
+            //print("The car's age is " + carAge);
         }
         else
         {
-          print("The car was introduced in the 2010's");
-          print("The car's maximum acceleration is " + maxAcceleration);
+            msg = msg + "The car was introduced in the 2010's\n";
+          //print("The car was introduced in the 2010's");
+            msg = msg + "The car's maximum acceleration is " + maxAcceleration + "\n";
+          //print("The car's maximum acceleration is " + maxAcceleration);
         }
-         print(CheckCharacteristics());
+        msg = msg + CheckCharacteristics() + "\n";
+        //print(CheckCharacteristics());
     }
 
     string CheckWeight()
