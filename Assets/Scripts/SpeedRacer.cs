@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpeedRacer : MonoBehaviour
 {
@@ -33,28 +34,21 @@ public class SpeedRacer : MonoBehaviour
     {
         //set initial value for msg
         msg = "The model specs: " + carModel + carMaker + engineType + "\n";
-        //print(carModel + carMaker + engineType);
 
         msg = msg + CheckWeight();
-        //CheckWeight();
 
         if (yearMade <= 2009)
         {
             msg = msg + "The car was introduced in " + yearMade + "\n";
-            //print("The car was introduced in " + yearMade);
             int carAge = CalculateAge(yearMade);
             msg = msg + "The car's age is " + carAge + "\n";
-            //print("The car's age is " + carAge);
         }
         else
         {
             msg = msg + "The car was introduced in the 2010's\n";
-          //print("The car was introduced in the 2010's");
             msg = msg + "The car's maximum acceleration is " + maxAcceleration + "\n";
-          //print("The car's maximum acceleration is " + maxAcceleration);
         }
         msg = msg + CheckCharacteristics() + "\n";
-        //print(CheckCharacteristics());
         showTextToScreen (showText, msg);
     }
 
