@@ -30,10 +30,12 @@ public class SpeedRacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //set initial value for msg
         msg = "The model specs: " + carModel + carMaker + engineType + "\n";
-        print(carModel + carMaker + engineType);
+        //print(carModel + carMaker + engineType);
 
-        CheckWeight();
+        msg = msg + CheckWeight();
+        //CheckWeight();
 
         if (yearMade <= 2009)
         {
@@ -49,7 +51,7 @@ public class SpeedRacer : MonoBehaviour
          print(CheckCharacteristics());
     }
 
-    void CheckWeight()
+    string CheckWeight()
     {
         if (carWeight < 1500)
         {
