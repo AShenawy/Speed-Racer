@@ -12,6 +12,7 @@ public class SpeedRacer : MonoBehaviour
     public string carMaker; 
 
     private string msg;
+    public Text showText;
 
     public class Fuel
     {
@@ -54,6 +55,7 @@ public class SpeedRacer : MonoBehaviour
         }
         msg = msg + CheckCharacteristics() + "\n";
         //print(CheckCharacteristics());
+        showTextToScreen (showText, msg);
     }
 
     string CheckWeight()
@@ -125,6 +127,11 @@ public class SpeedRacer : MonoBehaviour
             ConsumeFuel();
             CheckFuelLevel();
         }
+    }
+
+    void showTextToScreen (Text screenText, string pesan)
+    {
+        screenText.text = pesan;
     }
 
 
