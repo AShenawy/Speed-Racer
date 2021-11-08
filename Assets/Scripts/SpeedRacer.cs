@@ -88,7 +88,14 @@ public class SpeedRacer : MonoBehaviour
 
     void ConsumeFuel()
     {
-        carFuel.fuelLevel = carFuel.fuelLevel-10;
+        string mess;
+        if (carFuel.fuelLevel >= 10)
+        {
+            carFuel.fuelLevel = carFuel.fuelLevel-10;
+            mess = "Fuel level now: " + carFuel.fuelLevel.ToString();
+            showTextToScreen (showFuelText, mess);
+        }
+        
     }
 
     void CheckFuelLevel()
