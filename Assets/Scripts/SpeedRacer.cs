@@ -41,6 +41,8 @@ public class SpeedRacer : MonoBehaviour
     public Text carAgeText;
     public Text carIsSedanText;
 
+    public Button myButton;
+
     // public GameObject carInfo; 
 
     /* 
@@ -76,8 +78,9 @@ public class SpeedRacer : MonoBehaviour
     void Start()
     {
 
+        //Game View Texts
         printText(carModelText, carModel);
-        printText(carMakerText, carMaker);
+        printText(carMakerText, carMaker);              
         printText(engineTypeText, engineType);
         printText(carWeightText, CheckWieght());
         printText(carYearText, CheckYear());
@@ -85,8 +88,11 @@ public class SpeedRacer : MonoBehaviour
         printText(carIsSedanText, CheckCharactiristic());
 
         
-        CheckWieght1();
+        CheckWieght1(); // Function for Console View
 
+        /*checking conditions to print on 
+         *Console View
+         */
         if (yearMade <= 2009)
         {
             print(carModel + " was made in " + yearMade);
@@ -99,16 +105,9 @@ public class SpeedRacer : MonoBehaviour
         {
             print("The car was introduced in the 2010’s");          // This information will be availbale  
             print("Maximum accerlatiosn is: " + maxAcceleration);   // only for the models built after 2010
-
-
-
         }
 
-        print(CheckCharactiristic());
-
-        //        infoText.SetActive(true);
-        //        infoText.text = carModel;
-
+        print(CheckCharactiristic());// Function for Console View
 
     }
 
@@ -125,6 +124,7 @@ public class SpeedRacer : MonoBehaviour
     }
 
 
+    // CheckWieght functions for ConsoleView
     void CheckWieght1()
     {
         if (carWeight < 1500)
@@ -142,7 +142,7 @@ public class SpeedRacer : MonoBehaviour
         }
     }
 
-
+    // CheckWieght functions for GameView
     string CheckWieght()
     {
         if (carWeight < 1500)
@@ -208,11 +208,12 @@ public class SpeedRacer : MonoBehaviour
         }
         else
         {
-
             return "The car is neither a sedan nor does it have a front engine.";
         }
     }
 
+
+    //Console View >> Game View
     public void SetText(string text)
     {
         Text txt = transform.Find("Text").GetComponent<Text>();
@@ -226,52 +227,49 @@ public class SpeedRacer : MonoBehaviour
 
     string CheckAge()
     {
-       
-    
-    if (yearMade <= 2009)
-    {
+        if (yearMade <= 2009)
+        {
         int carAge = CalculateAge(yearMade);
-
         return carModel + " is now " + carAge + " years old!";
-    }
-    else
-    {
-        return "The car was introduced in the 2010’s. Maximum accerlatiosn is: " + maxAcceleration;
-
-    }
-
-}
-
-}
-
-
-
-
-//should break the loop!
-
-/*public void ButtonClicked()
-{
-    number--;
-
-
-    {
-        if (number < 90)
-        {
-            numberText.text = "Attention!! Fuel level is at half amount: " + number.ToString();
-        }
-        else if (number < 70)
-        {
-            //   print("Fuel level is: ");
-            numberText.text = "Warning! Fuel level is critically low: " + number.ToString();
         }
         else
         {
-            numberText.text = "Fuel level is: " + number.ToString();
+        return "The car was introduced in the 2010’s. Maximum accerlatiosn is: " + maxAcceleration;
         }
+    }
 
+    //Fuel Level Checker
+
+    public void ButtonClicked()
+    {
+        number--;
+        string a = "Fuel level is: " + number.ToString();
+
+        if (number < 60 && number > 40)
+            {
+                numberText.text = a + "\nAttention!! Fuel level is at half amount!!";
+            }
+            else if (number < 40 && number > 10)
+            {
+                //   print("Fuel level is: ");
+                numberText.text = a + "\nWarning! Fuel level is critically low: ";
+            }
+            else if (number == 0)
+            {
+                myButton.interactable = false;
+            }
+            else
+            {
+            numberText.text = "Fuel level is: " + number.ToString();
+            }
     }
 }
 
-*/
+
+
+
+
+
+
 
 
