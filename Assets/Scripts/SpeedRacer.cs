@@ -37,7 +37,9 @@ public class SpeedRacer : MonoBehaviour
     public Text carMakerText;
     public Text engineTypeText;
     public Text carWeightText;
-
+    public Text carYearText;
+    public Text carAgeText;
+    public Text carIsSedanText;
 
     // public GameObject carInfo; 
 
@@ -54,18 +56,18 @@ public class SpeedRacer : MonoBehaviour
             fuelLevel = amount;
         }
     }
-    
+
 
     public Fuel carFuel = new Fuel(100);
 
 
-    
+
 
 
     //public Text Text;
 
-    
-    
+
+
     /* 
    The end of A03.2
     */
@@ -78,18 +80,20 @@ public class SpeedRacer : MonoBehaviour
         printText(carMakerText, carMaker);
         printText(engineTypeText, engineType);
         printText(carWeightText, CheckWieght());
+        printText(carYearText, CheckYear());
+        printText(carAgeText, CheckAge());
+        printText(carIsSedanText, CheckCharactiristic());
 
-
-
+        
         CheckWieght1();
 
-        if(yearMade <= 2009)
+        if (yearMade <= 2009)
         {
             print(carModel + " was made in " + yearMade);
 
             int carAge = CalculateAge(yearMade);
 
-            print("So, " +carModel + " is now " + carAge + " years old!");
+            print("So, " + carModel + " is now " + carAge + " years old!");
         }
         else
         {
@@ -97,14 +101,14 @@ public class SpeedRacer : MonoBehaviour
             print("Maximum accerlatiosn is: " + maxAcceleration);   // only for the models built after 2010
 
 
-            
+
         }
 
         print(CheckCharactiristic());
 
         //        infoText.SetActive(true);
-//        infoText.text = carModel;
-     
+        //        infoText.text = carModel;
+
 
     }
 
@@ -143,7 +147,7 @@ public class SpeedRacer : MonoBehaviour
     {
         if (carWeight < 1500)
         {
-           return  carModel + "'s weight is less than 1500 kg";
+            return carModel + "'s weight is less than 1500 kg";
         }
 
         else if (carWeight > 1500)
@@ -160,12 +164,12 @@ public class SpeedRacer : MonoBehaviour
 
     void ConsumeFuelLevel()
     {
-        carFuel.fuelLevel = carFuel.fuelLevel- 10;
+        carFuel.fuelLevel = carFuel.fuelLevel - 10;
     }
 
     void CheckFuelLevel()
     {
-        switch(carFuel.fuelLevel)
+        switch (carFuel.fuelLevel)
         {
             case 70: print("fuel level is nearing two-thirds"); break;
             case 50: print("fuel level is at half amount"); break;
@@ -182,13 +186,13 @@ public class SpeedRacer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ConsumeFuelLevel();
             CheckFuelLevel();
         }
-       
+
     }
 
     string CheckCharactiristic()
@@ -209,38 +213,65 @@ public class SpeedRacer : MonoBehaviour
         }
     }
 
-   public void SetText(string text)
+    public void SetText(string text)
     {
         Text txt = transform.Find("Text").GetComponent<Text>();
         txt.text = text;
     }
 
-
-    //should break the loop!
-
-    public void ButtonClicked()
+    string CheckYear()
     {
-        number--;
-
-
-        {
-            if (number < 90)
-            {
-                numberText.text = "Attention!! Fuel level is at half amount: " + number.ToString();
-            }
-            else if (number < 70)
-            {
-                //   print("Fuel level is: ");
-                numberText.text = "Warning! Fuel level is critically low: " + number.ToString();
-            }
-            else
-            {
-                numberText.text = "Fuel level is: " + number.ToString();
-            }
-
-        }
+        return " was made in " + yearMade;
     }
 
+    string CheckAge()
+    {
+       
     
+    if (yearMade <= 2009)
+    {
+        int carAge = CalculateAge(yearMade);
+
+        return carModel + " is now " + carAge + " years old!";
+    }
+    else
+    {
+        return "The car was introduced in the 2010’s. Maximum accerlatiosn is: " + maxAcceleration;
+
+    }
 
 }
+
+}
+
+
+
+
+//should break the loop!
+
+/*public void ButtonClicked()
+{
+    number--;
+
+
+    {
+        if (number < 90)
+        {
+            numberText.text = "Attention!! Fuel level is at half amount: " + number.ToString();
+        }
+        else if (number < 70)
+        {
+            //   print("Fuel level is: ");
+            numberText.text = "Warning! Fuel level is critically low: " + number.ToString();
+        }
+        else
+        {
+            numberText.text = "Fuel level is: " + number.ToString();
+        }
+
+    }
+}
+
+*/
+
+
