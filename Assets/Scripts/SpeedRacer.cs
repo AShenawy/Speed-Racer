@@ -58,11 +58,11 @@ public class SpeedRacer : MonoBehaviour
     {
         if (carWeight < 1500)
         {
-            print(carModel + " weighs less than 1500 kg");
+            return carModel + " weighs less than 1500 kg\n";
         }
         else
         {
-            print(carModel + " weighs over 1500 kg");
+            return carModel + " weighs over 1500 kg\n";
         }
     }
 
