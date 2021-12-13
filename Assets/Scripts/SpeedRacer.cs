@@ -35,7 +35,6 @@ public class SpeedRacer : MonoBehaviour
         {
             fuelLevel = amount;
         }
-
     }
 
     //Passing a value to the previous constructor
@@ -76,23 +75,13 @@ public class SpeedRacer : MonoBehaviour
 
         Button btn = myButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-
-
-
     }
-
-
   
-    //If statement influenced by click
     void TaskOnClick()
     {
-            ConsumeFuel();
-            CheckFuelLevel();
-            
+        ConsumeFuel();
+        CheckFuelLevel();
     }
-
-   
-
 
     void ConsumeFuel()
     {
@@ -105,25 +94,23 @@ public class SpeedRacer : MonoBehaviour
     {
         switch (carFuel.fuelLevel)
         {
+            // =========== NOTE: if several cases return the same thing, you can combine them like below
+            // =========== Just don't forget to add a break in the end.
             case 90:
-                myText6.text = "FASTER...";
-                break;
             case 80:
+            case 60:
+            case 40:
                 myText6.text = "FASTER...";
                 break;
+
+
             //Print message in case fuel level is 70
             case 70:
                 myText6.text = "Fuel level is nearing two - thirds.";
                 break;
-            case 60:
-                myText6.text = "FASTER...";
-                break;
             //Print message in case fuel level is 50
             case 50:
                 myText6.text = "Fuel level is at half amount.";
-                break;
-            case 40:
-                myText6.text = "FASTER...";
                 break;
             case 30:
                 myText6.text = "Hit it!";
@@ -145,7 +132,6 @@ public class SpeedRacer : MonoBehaviour
                 break;
         }
     }
-
 
     //Function that prints message if the weight is under or over 1500
     void CheckWeight()
@@ -186,5 +172,4 @@ public class SpeedRacer : MonoBehaviour
             return "Unfortunately, it isn't sedan and it doesn't have a front engine";
         }
     }
-
 }
